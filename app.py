@@ -29,8 +29,8 @@ if not uploaded_file:
     st.info("Please upload a PGN file to analyze.")
 else:
     try:
-        # Read and parse PGN data
-        pgn_data = uploaded_file.read()
+        # Read and decode PGN data as text
+        pgn_data = uploaded_file.read().decode("utf-8")  # Decode here
         game = chess.pgn.read_game(pgn_data)
 
         # Extract moves and current board state
@@ -78,4 +78,3 @@ else:
 
     except Exception as e:
         st.error(f"Error analyzing PGN file: {e}")
-
