@@ -24,14 +24,7 @@ except Exception as e:
 
 # App title and instructions
 st.title("Chessmate.io ♞♟️")
-st.markdown(
-    """
-    Hi! User This is Chessmate.io created by Shreyansh Mishra this website uses Gen Ai from Google
-    
-    Drag and drop your PGN file here or click to browse: ♜
-    """,
-    unsafe_allow_html=True,
-)
+unsafe_allow_html=True,
 
 # File upload and validation
 upload_file = st.file_uploader("", type = ".txt")
