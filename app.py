@@ -25,6 +25,9 @@ user_input_text = st.text_area("Enter text for analysis:")
 
 if user_input_text:
     try:
+        upload_file = st.file_uploader("",value = "txt")
+        game = upload_file.read()
+
         # Generate analysis responses using the same prompts
         opening_analysis_prompt = f"""Analyze the opening played in this game, considering the context of '{game.headers.get('Event')}', player names/ratings, and tournament level. Identify the opening name, its key characteristics, and the main strategic ideas employed in this specific context. Focus on the opening moves (up to move X, if applicable) to provide a targeted analysis."""
 
