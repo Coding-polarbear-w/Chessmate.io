@@ -27,7 +27,7 @@ user_input_text = st.text_area("Enter text for analysis:")
 
 if user_input_text:
     try:
-        upload_file = st.file_uploader("",value = "txt")
+        upload_file = st.file_uploader("",type= "txt")
         game_info = upload_file.read()
         game = chess.pgn.read_game(game_info)
 
