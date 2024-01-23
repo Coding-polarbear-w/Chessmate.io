@@ -29,7 +29,7 @@ def generate_analysis_prompts(game):
 upload_file = st.file_uploader("", type="txt")
 
 if upload_file:
-    game_info = upload_file.read().decode("utf-8")  # Decode text file
+    game_info = upload_file.read()  # Decode text file
     game = chess.pgn.read_game(game_info)
 
     opening_analysis_prompt, error_analysis_prompt, similar_games_prompt = generate_analysis_prompts(game)
