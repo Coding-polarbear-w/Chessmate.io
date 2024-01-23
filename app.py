@@ -10,13 +10,11 @@ model = genai.GenerativeModel("gemini-pro-vision")
 chat = model.start_chat(history=[])
 
 def get_gemini_response(opening_analysis): 
-    response = chat.send_message(opening_analysis, stream = True)
+    response = model.generate_content(opening_analysis, stream = True)
     return response
 
 chat = model.start_chat(history=[])
-def get_gemini_response(question): 
-    response = chat.send_message(question, stream = True)
-    return response
+
 
 
 
@@ -85,13 +83,9 @@ else:
 
 # Generate analysis using Generative AI prompts with improved specificity
 opening_analysis = genai.generate_text(
-f"Analyze the opening played in this game, identifying its name, key characteristics, and strategic ideas within the context of '{game.headers.get('Opening')}'"
-)
-error_analysis = genai.generate_text(
-f"Identify any critical tactical errors or missed opportunities in this game, specifically focusing on middle-game decisions and endgames."
-)
-similar_games = genai.generate_text(
-f"Find historical games featuring similar opening and strategic themes as this one, mentioning {game.headers.get('Event')} if relevant."
+"""Analyze the opening played in this game, identifying its name, key characteristics, and strategic ideas within the context of '{game.headers.get('Opening')}'. 
+Also Identify any critical tactical errors or missed opportunities in this game, specifically focusing on middle-game decisions and endgames.
+And finally Find historical games featuring similar opening and strategic themes as this one, mentioning {game.headers.get('Event')} if relevant."""
 )
 
 
@@ -100,8 +94,6 @@ f"Find historical games featuring similar opening and strategic themes as this o
 
  # Display analysis and user interaction elements
 st.markdown(f"**Moves:** {moves_text}")
-st.write(f"**Error Analysis:** {error_analysis}")
-st.write(f"**Similar Games:** {similar_games}")
 
         # Predict Elo and confidence score
 try:
