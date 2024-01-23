@@ -24,9 +24,16 @@ except Exception as e:
 
 # App title and instructions
 st.title("Chessmate.io ♞♟️")
+st.markdown(""" Step into the dynamic world of Chessmate, where strategic mastery meets cutting-edge technology.
+             Harness the power of Google's generative AI for unparalleled chess analysis. Elevate your game, unravel tactics,
+             and embark on a journey of chess excellence. Welcome to a realm where intelligence converges with the art of chess. 
+            Checkmate awaits!""")
 unsafe_allow_html=True,
 
 # File upload and validation
+
+sub = st.button("Show Analysis")
+
 upload_file = st.file_uploader("", type = ".txt")
 
 st.markdown(""" Upload here if text file!!! """)
@@ -43,9 +50,9 @@ if upload_file2 and sub:
 
 
 uploaded_file = st.file_uploader("", type="pgn")
+
 st.markdown("""Upload here if in pgn format!!!""")
 
-sub = st.button("Show Analysis")
 
 if not uploaded_file:
     st.info("Please upload a PGN file to analyze.")
