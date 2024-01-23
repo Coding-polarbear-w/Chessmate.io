@@ -1,5 +1,5 @@
 import streamlit as st
-from google.generativeai import GenerativeModel as genai 
+import google.generativeai as genai 
 import chess.pgn
 import os
 
