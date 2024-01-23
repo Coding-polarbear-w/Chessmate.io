@@ -32,6 +32,12 @@ st.markdown(""" Step into the dynamic world of Chessmate, where strategic master
             Checkmate awaits!""")
 unsafe_allow_html=True,
 
+opening_analysis = genai.generate_text(
+"""Analyze the opening played in this game, identifying its name, key characteristics, and strategic ideas within the context of '{game.headers.get('Opening')}'. 
+Also Identify any critical tactical errors or missed opportunities in this game, specifically focusing on middle-game decisions and endgames.
+And finally Find historical games featuring similar opening and strategic themes as this one, mentioning {game.headers.get('Event')} if relevant."""
+)
+
 # File upload and validation
 
 sub = st.button("Show Analysis")
@@ -39,16 +45,14 @@ upload_file = st.file_uploader("", type = ".txt")
 
 
 st.markdown(""" Upload here if text file!!! """)
-
-
 if upload_file and sub: 
-    response = get_gemini_response(upload_file)
+    response = get_gemini_response(opening_analysis)
+
     
 upload_file2 = st.file_uploader("", type = "png")
-
 st.markdown("""Upload here in png format!!!""")
 if upload_file2 and sub: 
-    response = get_gemini_response(upload_file2)
+    response = get_gemini_response(opening_analysis)
 
 
 
@@ -80,13 +84,6 @@ else:
         st.markdown(f"**Moves:** {moves_text}")
 
 
-
-# Generate analysis using Generative AI prompts with improved specificity
-opening_analysis = genai.generate_text(
-"""Analyze the opening played in this game, identifying its name, key characteristics, and strategic ideas within the context of '{game.headers.get('Opening')}'. 
-Also Identify any critical tactical errors or missed opportunities in this game, specifically focusing on middle-game decisions and endgames.
-And finally Find historical games featuring similar opening and strategic themes as this one, mentioning {game.headers.get('Event')} if relevant."""
-)
 
 
 
