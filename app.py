@@ -32,9 +32,9 @@ unsafe_allow_html=True,
 
 
 opening_analysis = genai.generate_text(
-"""Analyze the opening played in this game, identifying its name, key characteristics, and strategic ideas within the context of '{game.headers.get('Opening')}'. 
+"""Analyze the opening played in this game, identifying its name, key characteristics, and strategic ideas within the context of . 
 Also Identify any critical tactical errors or missed opportunities in this game, specifically focusing on middle-game decisions and endgames.
-And finally Find historical games featuring similar opening and strategic themes as this one, mentioning {game.headers.get('Event')} if relevant."""
+And finally Find historical games featuring similar opening and strategic themes as this one, mentioning if relevant."""
 )
 
 # File upload and validation
