@@ -17,9 +17,9 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-def generate_analysis_prompts(game_info):
+def generate_analysis_prompts(game):
     # Customize prompts based on game_info (e.g., opening, errors, similar games)
-    return game_info, opening_analysis_prompt, error_analysis_prompt, similar_games_prompt
+    return game, opening_analysis_prompt, error_analysis_prompt, similar_games_prompt
 # Text input for analysis
 user_input_text = st.text_area("Enter text for analysis:")
 
