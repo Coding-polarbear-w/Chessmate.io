@@ -2,7 +2,8 @@ import streamlit as st
 import google.generativeai as genai 
 import chess.pgn
 import os
-
+import dotenv as load_dotenv
+load_dotenv()
 
 # Chessboard image for decoration
 board_image = "https://raw.githubusercontent.com/google/fonts/master/googlefonts/ptsans/fonts/static/PTSans-Bold.woff2"
