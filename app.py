@@ -34,20 +34,23 @@ st.markdown(
 )
 
 # File upload and validation
-st.markdown(""" Upload here if text file """)
 upload_file = st.file_uploader("", type = ".txt")
+
+st.markdown(""" Upload here if text file """)
 sub = st.button("Show Analysis")
 if upload_file and sub: 
     response = get_gemini_response(upload_file)
     
-st.markdown("""Upload here in png format""")
 upload_file2 = st.file_uploader("", type = "png")
+
+st.markdown("""Upload here in png format""")
 if upload_file2 and sub: 
     response = get_gemini_response(upload_file2)
 
 
 
 uploaded_file = st.file_uploader("", type="pgn")
+st.markdown("""Upload here if in pgn format!!!""")
 if not uploaded_file:
     st.info("Please upload a PGN file to analyze.")
 else:
