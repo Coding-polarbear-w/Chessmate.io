@@ -8,8 +8,18 @@ model = genai.GenerativeModel("gemini-pro-vision")
 
 # App title and instructions
 st.title("Chessmate.io ♞♟️")
-st.markdown("""...""")  # Instructions remain the same
+st.markdown(
+    """
+    Hi! User This is Chessmate.io created by Shreyansh Mishra this website uses Gen Ai from Google
+    
+    Drag and drop your PGN file here or click to browse: ♜
+    """,
+    unsafe_allow_html=True,
+)
 
+def generate_analysis_prompts(game_info):
+    # Customize prompts based on game_info (e.g., opening, errors, similar games)
+    return opening_analysis_prompt, error_analysis_prompt, similar_games_prompt
 # Text input for analysis
 user_input_text = st.text_area("Enter text for analysis:")
 
