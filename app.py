@@ -2,6 +2,7 @@
 import os
 import streamlit as st
 import google.generativeai as genai
+import chess.pgn 
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 model = genai.GenerativeModel("gemini-pro-vision")
@@ -17,7 +18,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-def generate_analysis_prompts(game):
+def generate_analysis_prompts(game, opening_analysis_prompt, error_analysis_prompt, similar_games_prompt):
     # Customize prompts based on game_info (e.g., opening, errors, similar games)
     return game, opening_analysis_prompt, error_analysis_prompt, similar_games_prompt
 # Text input for analysis
@@ -26,7 +27,8 @@ user_input_text = st.text_area("Enter text for analysis:")
 if user_input_text:
     try:
         upload_file = st.file_uploader("",value = "txt")
-        game = upload_file.read()
+        game_info = upload_file.read()
+        game = chess.pgn.read_game(game_info)
 
         # Generate analysis responses using the same prompts
         opening_analysis_prompt = f"""Analyze the opening played in this game, considering the context of '{game.headers.get('Event')}', player names/ratings, and tournament level. Identify the opening name, its key characteristics, and the main strategic ideas employed in this specific context. Focus on the opening moves (up to move X, if applicable) to provide a targeted analysis."""
