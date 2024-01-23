@@ -1,14 +1,18 @@
 import streamlit as st
-from google.generativeai import GenerativeModel
+import google.generativeai as genai 
 import chess.pgn
+import os
+
 
 # Chessboard image for decoration
-knight_image = "https://raw.githubusercontent.com/google/fonts/master/googlefonts/ptsans/fonts/static/PTSans-Bold.woff2"
+board_image = "https://raw.githubusercontent.com/google/fonts/master/googlefonts/ptsans/fonts/static/PTSans-Bold.woff2"
 
 # Initialize Generative AI model
-generative_model = GenerativeModel.create()
 
-st.title("♟️ Chess Game Analysis with AI ♞")
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+model = genai.GenerativeModel('gemini-pro-vision')
+
+st.title("Chessmate.io ♞♟️")
 
 # Upload PGN file with custom styling
 st.markdown(
@@ -30,14 +34,16 @@ if uploaded_file:
     fen_string = board.fen()
     # Use an online chessboard library or API to generate a visual board with move highlights based on fen_string
 
+    
+
     # Generate analysis using Generative AI prompts
-    opening_analysis = generative_model.generate_text(
+    opening_analysis = genai.generate_text(
         f"Analyze the opening played in this game, identifying its name, key characteristics, and strategic ideas."
     )
-    error_analysis = generative_model.generate_text(
+    error_analysis = genai.generate_text(
         f"Identify any critical tactical errors or missed opportunities in this game, explaining their consequences."
     )
-    similar_games = generative_model.generate_text(
+    similar_games = genai.generate_text(
         f"Find historical games featuring similar opening and strategic themes as this one, providing brief descriptions of each."
     )
 
@@ -46,13 +52,6 @@ if uploaded_file:
     st.write(f"**Opening Analysis:** {opening_analysis}")
     st.write(f"**Error Analysis:** {error_analysis}")
     st.write(f"**Similar Games:** {similar_games}")
-
-    # Additional interaction elements:
-    # - Explore specific lines within the game with user annotations
-    # - Compare current game analysis with different chess engine evaluations
-    # - Offer interactive tutorials on chess concepts and strategies
-
-
 
 
 elo_prediction = genai.generate_text(
