@@ -9,7 +9,7 @@ board_image = "https://raw.githubusercontent.com/google/fonts/master/googlefonts
 
 # Initialize Generative AI model
 
-genai.configure(api_key=os.getenv("google_api"))
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 model = genai.generativeai('gemini-pro-vision')
 
 st.title("Chessmate.io ♞♟️")
