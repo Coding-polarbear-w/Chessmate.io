@@ -20,6 +20,11 @@ CHESSBOARD_IMAGE = "https://www.chess.com/img/www/pieces/48/wP.png"  # Replace w
 try:
     genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
     model = genai.GenerativeModel("gemini-pro-vision")
+    
+    chat = model.start_chat(history=[])
+    def get_gemini_response(question): 
+        response = chat.send_message(question, stream = True)
+        return response
 except Exception as e:
     st.error(f"Error initializing Generative AI: {e}")
     exit(1)
