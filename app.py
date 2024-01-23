@@ -19,7 +19,7 @@ uploaded_file = st.file_uploader("", type=["txt", "png", "pgn"])
 
 if uploaded_file:
     file_type = uploaded_file.type.lower()
-    if file_type == "pgn":
+    if file_type == ["pgn","txt","png"]:
         pgn_data = uploaded_file.read().decode("utf-8")
         game = chess.pgn.read_game(pgn_data)
 
