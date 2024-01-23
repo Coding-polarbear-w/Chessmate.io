@@ -5,6 +5,8 @@ import google.generativeai as genai
 import chess.pgn
 import os
 
+
+chat = model.start_chat(history=[])
 def get_gemini_response(question): 
     response = chat.send_message(question, stream = True)
     return response
