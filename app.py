@@ -10,10 +10,8 @@ model = genai.GenerativeModel("gemini-pro-vision")
 chat = model.start_chat(history=[])
 
 def get_gemini_response(opening_analysis): 
-    response = model.generate_content(opening_analysis, stream = True)
-    return response
-
-chat = model.start_chat(history=[])
+    response = model.generate_content(opening_analysis)
+    return response.txt
 
 
 
