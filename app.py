@@ -17,17 +17,14 @@ def get_gemini_response(question):
 CHESSBOARD_IMAGE = "https://www.chess.com/img/www/pieces/48/wP.png"  # Replace with desired image
 
 # Initialize Generative AI model
-try:
-    genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-    model = genai.GenerativeModel("gemini-pro-vision")
-    
-    chat = model.start_chat(history=[])
-    def get_gemini_response(question): 
-        response = chat.send_message(question, stream = True)
-        return response
-except Exception as e:
-    st.error(f"Error initializing Generative AI: {e}")
-    exit(1)
+
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+model = genai.GenerativeModel("gemini-pro-vision")
+chat = model.start_chat(history=[])
+
+def get_gemini_response(question): 
+    response = chat.send_message(question, stream = True)
+    return response
 
 # App title and instructions
 st.title("Chessmate.io ♞♟️")
