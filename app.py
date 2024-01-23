@@ -5,6 +5,13 @@ import google.generativeai as genai
 import chess.pgn
 import os
 
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+model = genai.GenerativeModel("gemini-pro-vision")
+chat = model.start_chat(history=[])
+
+def get_gemini_response(question): 
+    response = chat.send_message(question, stream = True)
+    return response
 
 chat = model.start_chat(history=[])
 def get_gemini_response(question): 
@@ -18,13 +25,6 @@ CHESSBOARD_IMAGE = "https://www.chess.com/img/www/pieces/48/wP.png"  # Replace w
 
 # Initialize Generative AI model
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-model = genai.GenerativeModel("gemini-pro-vision")
-chat = model.start_chat(history=[])
-
-def get_gemini_response(question): 
-    response = chat.send_message(question, stream = True)
-    return response
 
 # App title and instructions
 st.title("Chessmate.io ♞♟️")
