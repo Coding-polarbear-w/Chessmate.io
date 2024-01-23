@@ -30,7 +30,7 @@ st.markdown(""" Step into the dynamic world of Chessmate, where strategic master
             Checkmate awaits!""")
 unsafe_allow_html=True,
 
-opening_analysis = genai.generate_text(
+opening_analysis =(
 """Analyze the opening played in this game, identifying its name, key characteristics, and strategic ideas within the context of '{game.headers.get('Opening')}'. 
 Also Identify any critical tactical errors or missed opportunities in this game, specifically focusing on middle-game decisions and endgames.
 And finally Find historical games featuring similar opening and strategic themes as this one, mentioning {game.headers.get('Event')} if relevant."""
