@@ -33,6 +33,16 @@ if uploaded_file:
 
         try:
             # Generate analysis responses
+            # Generate analysis using Generative AI prompts with improved specificity
+            opening_analysis = genai.generate_text(
+                f"Analyze the opening played in this game, identifying its name, key characteristics, and strategic ideas within the context of '{game.headers.get('Opening')}'"
+            )
+            error_analysis = genai.generate_text(
+                f"Identify any critical tactical errors or missed opportunities in this game, specifically focusing on middle-game decisions and endgames."
+            )
+            similar_games = genai.generate_text(
+                f"Find historical games featuring similar opening and strategic themes as this one, mentioning {game.headers.get('Event')} if relevant."
+            )
             opening_analysis = genai.generate_text(opening_analysis_prompt)
             error_analysis = genai.generate_text(error_analysis_prompt)
             similar_games = genai.generate_text(similar_games_prompt)
