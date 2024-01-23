@@ -1,7 +1,15 @@
+from dotenv import load_dotenv 
+load_dotenv()
 import streamlit as st
 import google.generativeai as genai
 import chess.pgn
 import os
+
+def get_gemini_response(question): 
+    response = chat.send_message(question, stream = True)
+    return response
+
+
 
 # Chessboard image for decoration
 CHESSBOARD_IMAGE = "https://www.chess.com/img/www/pieces/48/wP.png"  # Replace with desired image
@@ -27,6 +35,12 @@ st.markdown(
 
 # File upload and validation
 uploaded_file = st.file_uploader("", type="pgn")
+upload_file = st.file_uploader("", type = ".txt")
+sub = st.button("Show Analysis")
+if upload_file and sub: 
+    response = get_gemini_response(upload_file)
+    
+
 if not uploaded_file:
     st.info("Please upload a PGN file to analyze.")
 else:
@@ -60,6 +74,10 @@ else:
         similar_games = genai.generate_text(
             f"Find historical games featuring similar opening and strategic themes as this one, mentioning {game.headers.get('Event')} if relevant."
         )
+
+
+
+
 
         # Display analysis and user interaction elements
         st.markdown(f"**Moves:** {moves_text}")
