@@ -26,7 +26,7 @@ def generate_analysis_prompts(game, opening_analysis_prompt, error_analysis_prom
 
 
    
-upload_file = st.file_uploader("",type= "txt")
+upload_file = st.file_uploader("",type= "pgn")
 game_info = upload_file.read()
 game = chess.pgn.read_game(game_info)
 
