@@ -18,6 +18,8 @@ except Exception as e:
 st.title("Chessmate.io ♞♟️")
 st.markdown(
     """
+    Hi! User This is Chessmate.io created by Shreyansh Mishra this website uses Gen Ai from Google
+    
     Drag and drop your PGN file here or click to browse: ♜
     """,
     unsafe_allow_html=True,
@@ -30,7 +32,7 @@ if not uploaded_file:
 else:
     try:
         # Read and decode PGN data as text
-        pgn_data = uploaded_file.read().decode("utf-8")  # Decode here
+        pgn_data = uploaded_file.readvalue().decode("utf-8")  # Decode here
         game = chess.pgn.read_game(pgn_data)
 
         # Extract moves and current board state
