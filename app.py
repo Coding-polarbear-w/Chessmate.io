@@ -19,7 +19,8 @@ st.markdown(
 )
 
 def generate_analysis_prompts(game, opening_analysis_prompt, error_analysis_prompt, similar_games_prompt):
-    # Customize prompts based on game_info (e.g., opening, errors, similar games)
+   
+    response = model.generate_content(opening_analysis,error_analysis_prompt, similar_games_prompt )
     return game, opening_analysis_prompt, error_analysis_prompt, similar_games_prompt
 # Text input for analysis
 user_input_text = st.text_area("Enter text for analysis:")
