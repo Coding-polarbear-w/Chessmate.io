@@ -2,8 +2,7 @@ import streamlit as st
 import google.generativeai as genai 
 import chess.pgn
 import os
-import dotenv as load_dotenv
-load_dotenv()
+
 
 # Chessboard image for decoration
 board_image = "https://raw.githubusercontent.com/google/fonts/master/googlefonts/ptsans/fonts/static/PTSans-Bold.woff2"
@@ -11,7 +10,7 @@ board_image = "https://raw.githubusercontent.com/google/fonts/master/googlefonts
 # Initialize Generative AI model
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-model = genai.generativeai('gemini-pro-vision')
+model = genai.GenerativeModel('gemini-pro-vision')
 
 st.title("Chessmate.io ♞♟️")
 
